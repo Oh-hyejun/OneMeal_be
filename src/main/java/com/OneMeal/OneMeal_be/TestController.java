@@ -10,4 +10,9 @@ public class TestController {
     public String home() {
         return "home.html";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login.html";
+    }
 }
