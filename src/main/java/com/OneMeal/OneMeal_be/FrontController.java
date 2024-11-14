@@ -1,5 +1,6 @@
 package com.OneMeal.OneMeal_be;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,4 +25,9 @@ public class FrontController {
         response.put("code", 200);
         return response;
     }
+
+//    public ResponseEntity<MemberDTO> getMember(@PathVariable Integer id) {
+//        MemberDTO memberDTO = memberService.getMemberDTOById(id);
+//        return ResponseEntity.ok(memberDTO);
+//    }
 }
