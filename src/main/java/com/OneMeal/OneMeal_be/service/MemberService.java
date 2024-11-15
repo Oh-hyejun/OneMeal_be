@@ -15,17 +15,16 @@ public class MemberService {
     public MemberDTO getMemberByUsername(String username) {
         Member member = memberRepository.findByUsername(username);
 
-        MemberDTO memberInfo = new MemberDTO();
-        memberInfo.setUsername(member.getUsername());
-        memberInfo.setName(member.getName());
-        memberInfo.setPhoneNumber(member.getPhone_number());
-        memberInfo.setBirthDate(member.getBirth_date());
-        memberInfo.setGender(member.getGender());
-        memberInfo.setAddress(member.getAddress());
-        memberInfo.setLoginType(member.getLogin_type());
-        memberInfo.setZoneCode(member.getZone_code());
-        memberInfo.setDetailAddress(member.getDetail_address());
+        MemberDTO memberInfo = new MemberDTO(member);
 
         return memberInfo;
+    }
+
+    public boolean isUsernameAvailable(String username) {
+        return !memberRepository.existsByUsername(username);
+    }
+
+    public void signUp(MemberDTO memberDTO) {
+
     }
 }
