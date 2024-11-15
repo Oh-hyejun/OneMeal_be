@@ -26,8 +26,4 @@ public class FrontController {
         return response;
     }
 
-//    public ResponseEntity<MemberDTO> getMember(@PathVariable Integer id) {
-//        MemberDTO memberDTO = memberService.getMemberDTOById(id);
-//        return ResponseEntity.ok(memberDTO);
-//    }
 }
