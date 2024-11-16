@@ -1,11 +1,13 @@
-package com.OneMeal.OneMeal_be.controller;
+package com.OneMeal.OneMeal_be.member.controller;
 
-import com.OneMeal.OneMeal_be.dto.MemberDTO;
-import com.OneMeal.OneMeal_be.service.MemberService;
+import com.OneMeal.OneMeal_be.member.dto.MemberDTO;
+import com.OneMeal.OneMeal_be.member.dto.SignUpDTO;
+import com.OneMeal.OneMeal_be.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,14 +27,14 @@ public class MemberController {
         if (isUsernameAvailable) {
             return ResponseEntity.ok("사용가능한 아이디.");
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("중복된 아이디");
+            return ResponseEntity.status(400).body("중복된 아이디");
         }
     }
 
-    @PostMapping("/api/signup/")
-    public ResponseEntity<?> signUp(@RequestBody MemberDTO memberDTO) {
+    @PostMapping("/api/member/signup/")
+    public ResponseEntity<?> signUp(@RequestBody SignUpDTO signUpDTO) {
 
-        memberService.signUp(memberDTO);
+        memberService.signUp(signUpDTO);
 
         return ResponseEntity.ok("회원가입 성공");
     }

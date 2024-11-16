@@ -17,5 +17,9 @@ public class TestController {
         return "login.html";
     }
 
+    @GetMapping("/signUp")
+    public String signUp() {
+        return "signUp.html";
+    }
 
 }
