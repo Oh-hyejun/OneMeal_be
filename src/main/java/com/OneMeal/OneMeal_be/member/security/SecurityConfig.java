@@ -1,4 +1,4 @@
-package com.OneMeal.OneMeal_be.member;
+package com.OneMeal.OneMeal_be.member.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,10 +28,9 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );
 
-
-
         return http.build();
     }
+
 
 
 }

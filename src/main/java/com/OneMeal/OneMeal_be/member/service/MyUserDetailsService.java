@@ -2,8 +2,8 @@ package com.OneMeal.OneMeal_be.member.service;
 
 import com.OneMeal.OneMeal_be.member.entity.Member;
 import com.OneMeal.OneMeal_be.member.repository.MemberRepository;
+import com.OneMeal.OneMeal_be.member.security.CustomUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.task.TaskExecutionProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -25,16 +25,20 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         var result = memberRepository.findByUsername(username);
-        if (result.isEmpty()){
-            throw new UsernameNotFoundException("그런 아이디 없음");
+        if (result.isEmpty()) {
+            throw new UsernameNotFoundException("아이디를 찾을 수 없습니다.");
         }
-        Member user = result.get();
+        Member member = result.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         authorities.add(new SimpleGrantedAuthority("일반유저"));
 
-        return new User(user.getUsername(), user.getPassword(), authorities);
-    }
+        CustomUser user = new CustomUser(member.getUsername(), member.getPassword(), authorities);
 
+        user.setName(member.getName());
+        user.setId(member.getId());
+
+        return user;
+    }
 }

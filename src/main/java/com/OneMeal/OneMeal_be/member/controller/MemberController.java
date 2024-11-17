@@ -1,6 +1,6 @@
 package com.OneMeal.OneMeal_be.member.controller;
 
-import com.OneMeal.OneMeal_be.member.JwtUtill;
+import com.OneMeal.OneMeal_be.member.security.JwtUtill;
 import com.OneMeal.OneMeal_be.member.dto.MemberDTO;
 import com.OneMeal.OneMeal_be.member.dto.SignUpDTO;
 import com.OneMeal.OneMeal_be.member.service.MemberService;
@@ -13,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.Map;
 
 @RestController

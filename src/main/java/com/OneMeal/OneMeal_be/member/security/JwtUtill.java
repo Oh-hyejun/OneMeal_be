@@ -1,6 +1,5 @@
-package com.OneMeal.OneMeal_be.member;
+package com.OneMeal.OneMeal_be.member.security;
 
-import com.OneMeal.OneMeal_be.member.entity.Member;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -23,18 +22,18 @@ public class JwtUtill {
     // JWT 만들어주는 함수
     public static String createToken(Authentication auth) {
 
-        Member user = (Member) auth.getPrincipal();
+        CustomUser user = (CustomUser) auth.getPrincipal();
 
          String authorieties =  auth.getAuthorities().stream().map(
                 a -> a.getAuthority()
         ).collect(Collectors.joining(","));
 
         String jwt = Jwts.builder()
-                .claim("username", user.getUsername())
-                .claim("name", user.getName())
+                .claim("id", user.getId())
+                .claim("name", user.getUsername())
                 .claim("authorieties", authorieties)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 360000))
+                .expiration(new Date(System.currentTimeMillis() + 86400000))
                 .signWith(key)
                 .compact();
         return jwt;
