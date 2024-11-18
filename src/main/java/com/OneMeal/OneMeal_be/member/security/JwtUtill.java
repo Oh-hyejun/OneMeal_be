@@ -19,7 +19,6 @@ public class JwtUtill {
                     "OneMealpassword0303OneMealpassword0303OneMealpassword0303OneMealpassword0303"
             ));
 
-    // JWT 만들어주는 함수
     public static String createToken(Authentication auth) {
 
         CustomUser user = (CustomUser) auth.getPrincipal();
@@ -39,7 +38,6 @@ public class JwtUtill {
         return jwt;
     }
 
-    // JWT 까주는 함수
     public static Claims extractToken(String token) {
         Claims claims = Jwts.parser().verifyWith(key).build()
                 .parseSignedClaims(token).getPayload();

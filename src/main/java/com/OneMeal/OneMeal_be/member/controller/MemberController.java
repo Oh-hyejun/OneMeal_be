@@ -18,17 +18,18 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
+@RequestMapping("/api/member")
 public class MemberController {
 
     private final MemberService memberService;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    @GetMapping("/api/member/{username}")
+    @GetMapping("/{username}")
     public MemberDTO getMember(@PathVariable String username) {
         return memberService.getMemberByUsername(username);
     }
 
-    @GetMapping("/api/member/username/{username}")
+    @GetMapping("/username/{username}")
     public ResponseEntity<?> checkUsernameAvailability(@PathVariable String username) {
         boolean isUsernameAvailable = memberService.isUsernameAvailable(username);
         if (isUsernameAvailable) {
@@ -38,7 +39,7 @@ public class MemberController {
         }
     }
 
-    @PostMapping("/api/member/signup/")
+    @PostMapping("/signup/")
     public ResponseEntity<?> signUp(@RequestBody @Valid SignUpDTO signUpDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -50,7 +51,7 @@ public class MemberController {
         return ResponseEntity.ok("회원가입 성공");
     }
 
-    @PostMapping("/api/member/login")
+    @PostMapping("/login")
     public String login(@RequestBody Map<String, String> loginInfo) {
 
         var authToken = new UsernamePasswordAuthenticationToken(
