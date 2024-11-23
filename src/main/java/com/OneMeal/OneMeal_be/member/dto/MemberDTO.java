@@ -1,6 +1,6 @@
 package com.OneMeal.OneMeal_be.member.dto;
 
-import com.OneMeal.OneMeal_be.member.entity.Member;
+import com.OneMeal.OneMeal_be.entity.Member;
 import lombok.Data;
 
 import java.sql.Date;

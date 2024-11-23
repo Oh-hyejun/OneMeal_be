@@ -20,4 +20,7 @@ public class TestController {
     String home() {
         return "home.html";
     }
+
+    @GetMapping("/post")
+    String post() { return "post.html"; }
 }

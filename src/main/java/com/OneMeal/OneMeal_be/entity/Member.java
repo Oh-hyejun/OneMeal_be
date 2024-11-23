@@ -1,4 +1,4 @@
-package com.OneMeal.OneMeal_be.member.entity;
+package com.OneMeal.OneMeal_be.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

@@ -3,7 +3,7 @@ package com.OneMeal.OneMeal_be.member.service;
 import com.OneMeal.OneMeal_be.member.dto.MemberDTO;
 import com.OneMeal.OneMeal_be.member.dto.SignUpDTO;
 import com.OneMeal.OneMeal_be.member.repository.MemberRepository;
-import com.OneMeal.OneMeal_be.member.entity.Member;
+import com.OneMeal.OneMeal_be.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.OneMeal.OneMeal_be.member.entity;
+package com.OneMeal.OneMeal_be.entity;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;
@@ -12,13 +12,7 @@ import lombok.Setter;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer key;
-
-    @Column(name = "member_id")
-    private Integer memberId;
-
-    @Column(name = "material_id")
-    private Integer materialId;
+    private Integer id;
 
     private String title;
 
@@ -38,15 +32,19 @@ public class Post {
     @JoinColumn(name = "member_id", insertable = false, updatable = false)
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "material_id", insertable = false, updatable = false)
-    private Material material;
+    @ManyToMany
+    @JoinTable(
+            name = "post_material",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id")
+    )
+    private List<Material> materials;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Favorite> favorites;
-
-
+    @PrePersist
+    protected void onCreate() {
+        this.created_at = new Timestamp(System.currentTimeMillis());
+    }
 }

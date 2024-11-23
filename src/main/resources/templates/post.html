@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Fetcher</title>
+</head>
+<body>
+<h2>게시글 정보 불러오기</h2>
+<div>
+    <input type="number" id="postId" placeholder="게시글 ID를 입력하세요">
+    <button onclick="fetchPostData()">불러오기</button>
+</div>
+
+<h3>게시글 정보</h3>
+<pre id="postData"></pre>
+
+<script>
+    function fetchPostData() {
+        const postId = document.getElementById("postId").value;
+
+        // API 호출
+        fetch(`http://localhost:8080/api/post/detail/${postId}`)
+            .then(response => response.json())
+            .then(data => {
+                // 응답 받은 데이터를 HTML에 출력
+                document.getElementById("postData").textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById("postData").textContent = "데이터를 불러오는 데 실패했습니다.";
+            });
+    }
+</script>
+</body>
+</html>
