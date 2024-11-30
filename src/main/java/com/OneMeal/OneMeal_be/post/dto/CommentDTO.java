@@ -15,19 +15,4 @@ public class CommentDTO {
     private MemberDTO member;
     private String content;
     private Timestamp created_at;
-
-
-    public CommentDTO(Comment comment) {
-        this.id = comment.getId();
-        this.content = comment.getContent();
-        this.created_at = comment.getCreated_at();
-
-        if (comment.getPost() != null) {
-            this.post = new PostDTO(comment.getPost());
-        }
-
-        if (comment.getMember() != null) {
-            this.member = new MemberDTO(comment.getMember());
-        }
-    }
 }

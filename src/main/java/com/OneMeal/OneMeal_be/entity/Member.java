@@ -5,10 +5,11 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-@Getter
-@Setter
 @Entity
+@Getter @Setter
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,4 +39,10 @@ public class Member {
 
     @Column(nullable = false, length = 10)
     private String login_type;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Favorite> favorites = new ArrayList<>();
 }

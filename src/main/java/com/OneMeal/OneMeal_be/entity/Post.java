@@ -6,13 +6,16 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
+@Getter @Setter
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     private String title;
 
@@ -20,28 +23,11 @@ public class Post {
 
     private Integer view;
 
-    private String img_url;
-
-    private String category;
+    private String thumbnail_img_url;
 
     private Integer serving;
 
     private Timestamp created_at;
-
-    @ManyToOne
-    @JoinColumn(name = "member_id", insertable = false, updatable = false)
-    private Member member;
-
-    @ManyToMany
-    @JoinTable(
-            name = "post_material",
-            joinColumns = @JoinColumn(name = "post_id"),
-            inverseJoinColumns = @JoinColumn(name = "material_id")
-    )
-    private List<Material> materials;
-
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Comment> comments;
 
     @PrePersist
     protected void onCreate() {

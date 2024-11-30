@@ -20,7 +20,7 @@
         const postId = document.getElementById("postId").value;
 
         // API 호출
-        fetch(`http://localhost:8080/api/post/detail/${postId}`)
+        fetch(`http://localhost:8081/api/post/detail/${postId}`)
             .then(response => response.json())
             .then(data => {
                 // 응답 받은 데이터를 HTML에 출력

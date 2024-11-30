@@ -14,11 +14,14 @@ import java.util.Optional;
 public class PostService {
     private final PostRepository postRepository;
 
-    public PostDTO getPostById(Integer id) {
-        Optional<Post> post = postRepository.findById(id);
+    public PostDTO findPostById(Integer id) {
+        Post post = postRepository.findPostById(id);
 
-        PostDTO postDTO = new PostDTO(post.get());
+        PostDTO postDetail = new PostDTO(post);
 
-        return postDTO;
+
+
+
+        return postDetail;
     }
 }
